@@ -1,0 +1,48 @@
+version: '3.1'
+
+services:
+
+  app:
+    container_name: "mydrugs_app"
+    image: app-mydrugs
+    build: ./
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydrugs
+      SPRING_DATASOURCE_USERNAME: mydrugsuser
+      SPRING_DATASOURCE_PASSWORD: mydrugspass
+    ports:
+      - '8080:8080'
+    networks:
+      - product-net
+    depends_on:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mydrugs@mail.com
+      PGADMIN_DEFAULT_PASSWORD: mydrugspass
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - product-net
+
+  db:
+    container_name: "postgres_mydrugs"
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: mydrugsuser
+      POSTGRES_PASSWORD: mydrugspass
+      POSTGRES_DB: mydrugs
+    ports:
+      - '5432:5432'
+    networks:
+      - product-net
+
+
+networks:
+  product-net:
+    driver: bridge
