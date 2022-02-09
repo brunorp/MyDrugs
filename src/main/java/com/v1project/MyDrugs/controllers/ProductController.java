@@ -28,4 +28,10 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws Exception {
         return new ResponseEntity<>(productService.createProduct(product), HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(code=HttpStatus.OK)
+    public void createProduct(@PathVariable int id) throws Exception {
+        productService.deleteProduct(id);
+    }
 }

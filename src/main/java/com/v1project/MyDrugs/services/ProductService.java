@@ -31,4 +31,12 @@ public class ProductService {
             throw new Exception("Error while creating the product. Error: ", e);
         }
     }
+
+    public void deleteProduct(int id) throws Exception {
+        try{
+            productRepository.deleteById(id);
+        }catch(RuntimeException e){
+            throw new Exception("Error while creating the product. Error: ", e);
+        }
+    }
 }

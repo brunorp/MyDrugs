@@ -1,6 +1,8 @@
+docker-install:
+	./mvnw clean install -DskipTests=true
+
 docker-start:
-	./mvnw clean package -DskipTests=true
-	docker-compose up -d
+	docker-compose up --build
 
 docker-stop:
 	docker-compose down
