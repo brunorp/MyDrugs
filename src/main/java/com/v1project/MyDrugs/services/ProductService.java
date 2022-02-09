@@ -23,4 +23,12 @@ public class ProductService {
             throw new Exception("Error while getting all the products. Error: ", e);
         }
     }
+
+    public Product createProduct(Product product) throws Exception {
+        try{
+            return productRepository.save(product);
+        }catch (RuntimeException e){
+            throw new Exception("Error while creating the product. Error: ", e);
+        }
+    }
 }
