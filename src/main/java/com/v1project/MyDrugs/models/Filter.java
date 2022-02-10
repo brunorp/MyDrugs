@@ -1,6 +1,9 @@
 package com.v1project.MyDrugs.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Filter {
     @Id
@@ -19,5 +25,9 @@ public class Filter {
     private String filterName;
 
     @NotNull
-    private String type;
+    @JsonProperty("filter_value")
+    private String filterValue;
+
+    @NotNull
+    private int active;
 }
