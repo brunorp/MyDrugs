@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) throws Exception {
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) throws Exception {
         return new ResponseEntity<>(productService.createProduct(product), HttpStatus.OK);
     }
 
