@@ -33,4 +33,31 @@ public class FilterService {
         }
 
     }
+
+    public Filter activeFilter(int id) {
+        try{
+            Filter filter = filterRepository.findById(id);
+            if(filter != null && filter.getActive() != 1){
+                filter.setActive(1);
+                filterRepository.save(filter);
+                return filter;
+            }else{
+                throw new RuntimeException("Filter does not exist");
+            }
+        }catch(RuntimeException e){
+            throw new RuntimeException("Error activating filter.", e);
+        }
+
+    }
+
+    public Filter disableFilter(int id) {
+        try{
+            Filter filter = filterRepository.findById(id);
+            filter.setActive(0);
+            filterRepository.save(filter);
+            return filter;
+        }catch(RuntimeException e) {
+            throw new RuntimeException("Error disabling filter.", e);
+        }
+    }
 }

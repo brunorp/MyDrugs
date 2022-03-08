@@ -28,4 +28,14 @@ public class FilterController {
     public ResponseEntity<Filter> createFilter(@RequestBody Filter filter){
         return ResponseEntity.ok(filterService.createFilter(filter));
     }
+
+    @PatchMapping("/active/{id}")
+    public ResponseEntity<Filter> activeFilter(@PathVariable int id){
+        return ResponseEntity.ok(filterService.activeFilter(id));
+    }
+
+    @PatchMapping("/disable/{id}")
+    public ResponseEntity<Filter> disableFilter(@PathVariable int id){
+        return ResponseEntity.ok(filterService.disableFilter(id));
+    }
 }

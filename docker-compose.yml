@@ -2,20 +2,20 @@ version: '3.1'
 
 services:
 
-  app:
-    container_name: "mydrugs_app"
-    image: app-mydrugs
-    build: ./
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydrugs
-      SPRING_DATASOURCE_USERNAME: mydrugsuser
-      SPRING_DATASOURCE_PASSWORD: mydrugspass
-    ports:
-      - '8080:8080'
-    networks:
-      - product-net
-    depends_on:
-      - db
+  # app:
+  #  container_name: "mydrugs_app"
+  #  image: app-mydrugs
+  #  build: ./
+  #  environment:
+  #    SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydrugs
+  #    SPRING_DATASOURCE_USERNAME: mydrugsuser
+  #    SPRING_DATASOURCE_PASSWORD: mydrugspass
+  #  ports:
+  #    - '8080:8080'
+  #  networks:
+  #    - product-net
+  #  depends_on:
+  #    - db
 
   pgadmin:
     image: dpage/pgadmin4
