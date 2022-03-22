@@ -29,9 +29,9 @@ public class ProductController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Optional<Product>> getOne(@PathVariable int id){
+    public ResponseEntity<Product> getOne(@PathVariable int id){
         log.info("Starting to get product");
-        Optional<Product> product = productService.getOneProduct(id);
+        Product product = productService.getOneProduct(id);
         return ResponseEntity.ok(product);
     }
 

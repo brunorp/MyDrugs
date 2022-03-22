@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -42,9 +41,9 @@ public class ProductService {
         }
     }
 
-    public Optional<Product> getOneProduct(int id) {
-        return Optional.ofNullable(productRepository.findById(id).orElseThrow(
+    public Product getOneProduct(int id) {
+        return productRepository.findById(id).orElseThrow(
                 () -> new NoProductFoundException("No product found. ID: " + id)
-        ));
+        );
     }
 }
