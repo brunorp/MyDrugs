@@ -1,49 +1,55 @@
 package com.v1project.MyDrugs.services;
 
-import com.v1project.MyDrugs.exceptions.NoProductFoundException;
+import com.v1project.MyDrugs.exceptions.NotFoundException;
 import com.v1project.MyDrugs.models.Product;
+import com.v1project.MyDrugs.models.dtos.ProductDTO;
+import com.v1project.MyDrugs.models.mappers.Mapper;
+import com.v1project.MyDrugs.models.mappers.MapperInterface;
 import com.v1project.MyDrugs.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final MapperInterface mapper;
 
     @Autowired
-    public ProductService(ProductRepository productRepository){
+    public ProductService(ProductRepository productRepository, MapperInterface mapper){
         this.productRepository = productRepository;
+        this.mapper = mapper;
     }
 
-    public List<Product> getAllProducts() throws Exception {
-        try{
-            return productRepository.findAll();
-        }catch(RuntimeException e){
-            throw new Exception("Error while getting all the products. Error: ", e);
-        }
+    public List<ProductDTO> getAllProducts(){
+        return productRepository.findAll().stream()
+                .map(mapper::toProductDTO)
+                .collect(Collectors.toList());
     }
 
-    public Product createProduct(Product product) throws Exception {
+    public ProductDTO getOneProduct(int id) {
+        return productRepository.findById(id)
+                .map(mapper::toProductDTO)
+                .orElseThrow(
+                        () -> new NotFoundException("No product found. ID: " + id)
+                );
+    }
+
+    public Product createProduct(Product product){
         try{
             return productRepository.save(product);
-        }catch (RuntimeException e){
-            throw new Exception("Error while creating the product. Error: ", e);
+        } catch (RuntimeException e){
+            throw new RuntimeException("Error while creating the product. Error: ", e);
         }
     }
 
-    public void deleteProduct(int id) throws Exception {
+    public void deleteProduct(int id){
         try{
             productRepository.deleteById(id);
         }catch(RuntimeException e){
-            throw new Exception("Error while creating the product. Error: ", e);
+            throw new RuntimeException("Error while creating the product. Error: ", e);
         }
-    }
-
-    public Product getOneProduct(int id) {
-        return productRepository.findById(id).orElseThrow(
-                () -> new NoProductFoundException("No product found. ID: " + id)
-        );
     }
 }
