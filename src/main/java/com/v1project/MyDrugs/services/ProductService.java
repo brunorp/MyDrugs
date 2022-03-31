@@ -3,7 +3,6 @@ package com.v1project.MyDrugs.services;
 import com.v1project.MyDrugs.exceptions.NotFoundException;
 import com.v1project.MyDrugs.models.Product;
 import com.v1project.MyDrugs.models.dtos.ProductDTO;
-import com.v1project.MyDrugs.models.mappers.Mapper;
 import com.v1project.MyDrugs.models.mappers.MapperInterface;
 import com.v1project.MyDrugs.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

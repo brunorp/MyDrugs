@@ -3,7 +3,6 @@ package com.v1project.MyDrugs.services;
 import com.v1project.MyDrugs.exceptions.NotFoundException;
 import com.v1project.MyDrugs.models.Product;
 import com.v1project.MyDrugs.models.dtos.ProductDTO;
-import com.v1project.MyDrugs.models.mappers.Mapper;
 import com.v1project.MyDrugs.models.mappers.MapperInterface;
 import com.v1project.MyDrugs.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -87,11 +86,21 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void createProduct() {
+    public void shouldCreateProduct() {
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+
+        Product res = productService.createProduct(product);
+
+        assertNotNull(res);
+        assertEquals(res.getClass(), Product.class);
+        assertEquals(product, res);
     }
 
     @Test
     public void deleteProduct() {
+        productService.deleteProduct(product.getId());
+
+        verify(productRepository, times(1)).deleteById(product.getId()); //pretty sure it is verify after call
     }
 
     private Product instantiateProduct(){
