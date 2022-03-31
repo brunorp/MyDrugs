@@ -53,7 +53,11 @@ git clone https://github.com/brunorp/MyDrugs
 
 ### Documentation
 
-- [x] Search for recipes using ingredients
+- [x] Get all products
+- [x] Get one product
+- [x] Create one product
+- [x] Delete one product
+- [ ] Edit one product
 
 ### Build with
 
