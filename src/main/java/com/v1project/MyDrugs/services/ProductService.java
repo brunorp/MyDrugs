@@ -36,9 +36,11 @@ public class ProductService {
                 );
     }
 
-    public Product createProduct(Product product){
+    public ProductDTO createProduct(Product product){
         try{
-            return productRepository.save(product);
+            Product res = productRepository.save(product);
+
+            return mapper.toProductDTO(res);
         } catch (RuntimeException e){
             throw new RuntimeException("Error while creating the product. Error: ", e);
         }

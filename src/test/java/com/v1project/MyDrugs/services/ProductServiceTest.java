@@ -88,12 +88,13 @@ public class ProductServiceTest {
     @Test
     public void shouldCreateProduct() {
         when(productRepository.save(any(Product.class))).thenReturn(product);
+        when(mapper.toProductDTO(product)).thenReturn(productDTOTest);
 
-        Product res = productService.createProduct(product);
+        ProductDTO res = productService.createProduct(product);
 
         assertNotNull(res);
-        assertEquals(res.getClass(), Product.class);
-        assertEquals(product, res);
+        assertEquals(res.getClass(), ProductDTO.class);
+        assertEquals(productDTOTest, res);
     }
 
     @Test
