@@ -37,20 +37,11 @@ public class ProductService {
     }
 
     public ProductDTO createProduct(Product product){
-        try{
-            Product res = productRepository.save(product);
-
-            return mapper.toProductDTO(res);
-        } catch (RuntimeException e){
-            throw new RuntimeException("Error while creating the product. Error: ", e);
-        }
+        Product res = productRepository.save(product);
+        return mapper.toProductDTO(res);
     }
 
     public void deleteProduct(int id){
-        try{
-            productRepository.deleteById(id);
-        }catch(RuntimeException e){
-            throw new RuntimeException("Error while creating the product. Error: ", e);
-        }
+        productRepository.deleteById(id);
     }
 }
