@@ -4,7 +4,6 @@ import com.v1project.MyDrugs.models.Product;
 import com.v1project.MyDrugs.models.dtos.ProductDTO;
 import com.v1project.MyDrugs.services.ProductService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/v1/product")
 public class ProductController {
     private final ProductService productService;
 
