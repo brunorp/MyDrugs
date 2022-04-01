@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -35,7 +35,7 @@ class UserServiceTest {
     }
 
     @Test
-    void getAllUsers() {
+    public void shouldGetAllUsers() {
         List<User> userList = Collections.singletonList(userTest);
 
         when(userRepository.findAll()).thenReturn(userList);
@@ -44,7 +44,20 @@ class UserServiceTest {
         List<UserDTO> userDTOListRes = userService.getAllUsers();
 
         assertNotEquals(userDTOListRes.size(), 0);
+        verify(userRepository, times(1)).findAll();
     }
+
+    @Test
+    public void shouldCreateUser(){
+        when(userRepository.save(userTest)).thenReturn(userTest);
+        when(mapper.toUserDTO(userTest)).thenReturn(userDTOTest);
+
+        UserDTO userDTO = userService.createUser(userTest);
+
+        assertEquals(userDTO, userDTOTest);
+        verify(userRepository, times(1)).save(any(User.class));
+    }
+
 
     private User createNewUserTest() {
         return new User(1, "userTest", "passTest");

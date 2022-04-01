@@ -1,11 +1,10 @@
 package com.v1project.MyDrugs.controllers;
 
+import com.v1project.MyDrugs.models.User;
 import com.v1project.MyDrugs.models.dtos.UserDTO;
 import com.v1project.MyDrugs.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,10 @@ public class UserController {
     @GetMapping("/getall")
     public ResponseEntity<List<UserDTO>> getAllUsers(){
         return ResponseEntity.ok().body(userService.getAllUsers());
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<UserDTO> createUser(@RequestBody User user){
+        return ResponseEntity.ok().body(userService.createUser(user));
     }
 }

@@ -1,5 +1,6 @@
 package com.v1project.MyDrugs.services;
 
+import com.v1project.MyDrugs.models.User;
 import com.v1project.MyDrugs.models.dtos.UserDTO;
 import com.v1project.MyDrugs.models.mappers.MapperInterface;
 import com.v1project.MyDrugs.repositories.UserRepository;
@@ -25,5 +26,9 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(mapper::toUserDTO)
                 .collect(Collectors.toList());
+    }
+
+    public UserDTO createUser(User user){
+        return mapper.toUserDTO(userRepository.save(user));
     }
 }
