@@ -11,15 +11,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.v1project.MyDrugs.utils.CreateProductTest.instantiateProduct;
+import static com.v1project.MyDrugs.utils.CreateProductTest.instantiateProductDTO;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
@@ -102,12 +109,5 @@ public class ProductServiceTest {
         productService.deleteProduct(product.getId());
 
         verify(productRepository, times(1)).deleteById(product.getId()); //pretty sure it is verify after call
-    }
-
-    private Product instantiateProduct(){
-        return new Product(1, "ProductTest", "Testing", new BigDecimal("45"));
-    }
-    private ProductDTO instantiateProductDTO(){
-        return new ProductDTO(1, "ProductTest", "Testing", new BigDecimal("45"));
     }
 }

@@ -13,8 +13,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static com.v1project.MyDrugs.utils.CreateUserTest.createNewUserDTOTest;
+import static com.v1project.MyDrugs.utils.CreateUserTest.createNewUserTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -57,13 +63,4 @@ class UserServiceTest {
         assertEquals(userDTO, userDTOTest);
         verify(userRepository, times(1)).save(any(User.class));
     }
-
-
-    private User createNewUserTest() {
-        return new User(1, "userTest", "passTest");
-    }
-    private UserDTO createNewUserDTOTest() {
-        return new UserDTO(1, "userTest", "passTest");
-    }
-
 }
