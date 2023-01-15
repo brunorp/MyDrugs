@@ -10,6 +10,10 @@ public class CreateUserTest {
     }
 
     public static UserDTO createNewUserDTOTest() {
-        return new UserDTO(1, "userTest", "passTest");
+        return UserDTO.builder()
+                .id(1)
+                .userName("userTest")
+                .password("passTest")
+                .build();
     }
 }

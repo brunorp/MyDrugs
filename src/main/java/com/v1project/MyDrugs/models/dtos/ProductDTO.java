@@ -1,6 +1,6 @@
 package com.v1project.MyDrugs.models.dtos;
 
-import lombok.*;
+import lombok.Builder;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 

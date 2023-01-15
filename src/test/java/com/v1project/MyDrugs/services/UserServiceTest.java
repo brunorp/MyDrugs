@@ -7,6 +7,7 @@ import com.v1project.MyDrugs.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -25,17 +26,17 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
+    @InjectMocks
+    private UserService userService;
     @Mock
     private UserRepository userRepository;
     @Mock
     private MapperInterface mapper;
     private User userTest;
     private UserDTO userDTOTest;
-    private UserService userService;
 
     @BeforeEach
     void setUp() {
-        userService = new UserService(userRepository, mapper);
         userTest = createNewUserTest();
         userDTOTest = createNewUserDTOTest();
     }
