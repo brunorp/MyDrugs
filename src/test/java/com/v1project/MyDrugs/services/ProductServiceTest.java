@@ -8,6 +8,7 @@ import com.v1project.MyDrugs.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -37,6 +38,7 @@ public class ProductServiceTest {
     @Mock
     private MapperInterface mapper;
 
+    @InjectMocks
     private ProductService productService;
 
     private Product product;
@@ -45,7 +47,6 @@ public class ProductServiceTest {
 
     @BeforeEach
     public void setUp() {
-        productService = new ProductService(productRepository, mapper);
         product = instantiateProduct();
         productDTOTest = instantiateProductDTO();
     }
