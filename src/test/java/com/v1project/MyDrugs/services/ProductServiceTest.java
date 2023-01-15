@@ -34,15 +34,11 @@ public class ProductServiceTest {
 
     @Mock
     private ProductRepository productRepository;
-
     @Mock
     private MapperInterface mapper;
-
     @InjectMocks
     private ProductService productService;
-
     private Product product;
-
     private ProductDTO productDTOTest;
 
     @BeforeEach
@@ -53,8 +49,7 @@ public class ProductServiceTest {
 
     @Test
     public void shouldGetAllProducts() {
-        List<Product> allProducts = new ArrayList<>();
-        allProducts.add(product);
+        List<Product> allProducts = new ArrayList<>(List.of(product));
 
         when(productRepository.findAll()).thenReturn(allProducts);
         when(mapper.toProductDTO(product)).thenReturn(productDTOTest);
@@ -76,7 +71,7 @@ public class ProductServiceTest {
 
         verify(productRepository, times(1)).findById(anyInt());
         assertEquals(productDTO.getClass(), ProductDTO.class);
-        assertEquals(productDTO.getProductName(), "ProductTest");
+        assertEquals(productDTO.productName(), "ProductTest");
     }
 
     @Test

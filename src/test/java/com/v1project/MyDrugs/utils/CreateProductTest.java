@@ -11,7 +11,12 @@ public class CreateProductTest {
         return new Product(1, "ProductTest", "Testing", new BigDecimal("45"));
     }
     public static ProductDTO instantiateProductDTO(){
-        return new ProductDTO(1, "ProductTest", "Testing", new BigDecimal("45"));
+        return ProductDTO.builder()
+                .id(1)
+                .tag("Testing")
+                .productName("ProductTest")
+                .price(new BigDecimal("45"))
+                .build();
     }
 
 }

@@ -47,11 +47,11 @@ class ProductControllerTest {
     @Test
     void getProductById() {
         ProductDTO productDTO = instantiateProductDTO();
-        when(productService.getOneProduct(productDTO.getId())).thenReturn(productDTO);
+        when(productService.getOneProduct(productDTO.id())).thenReturn(productDTO);
 
-        ResponseEntity<ProductDTO> productDTO1 = productController.getProductById(productDTO.getId());
+        ResponseEntity<ProductDTO> productDTO1 = productController.getProductById(productDTO.id());
 
-        verify(productService, times(1)).getOneProduct(productDTO.getId());
+        verify(productService, times(1)).getOneProduct(productDTO.id());
     }
 
     @Test

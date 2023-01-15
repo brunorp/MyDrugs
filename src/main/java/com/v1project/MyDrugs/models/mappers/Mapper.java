@@ -11,12 +11,12 @@ public class Mapper implements MapperInterface {
 
     @Override
     public ProductDTO toProductDTO(Product product) {
-        return new ProductDTO(
-                product.getId(),
-                product.getProductName(),
-                product.getTag(),
-                product.getPrice()
-        );
+        return ProductDTO.builder()
+                .id(product.getId())
+                .productName(product.getProductName())
+                .price(product.getPrice())
+                .tag(product.getTag())
+                .build();
     }
 
     @Override
