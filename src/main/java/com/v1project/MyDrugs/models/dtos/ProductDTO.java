@@ -1,11 +1,9 @@
 package com.v1project.MyDrugs.models.dtos;
 
 import lombok.Builder;
-import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
-@Component
-public record ProductDTO(Integer id,
+public record ProductDTO(int id,
          String productName,
          String tag,
          BigDecimal price) {
